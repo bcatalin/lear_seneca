@@ -2,31 +2,26 @@
 
 var seneca = require('seneca')();
 
-//seneca.add({role:'inventory', cmd:'find_item', find_item});
-  //seneca.add({role:'inventory', cmd:'create_item', create_item});
-  //... other action definitions
-  console.log("=add role inventory and cmd create_item=");
-  // function find_item(args, done) {
-  //   var itemId = args.id;
-  //   // ... perform find
-  //   done(null, item);
-  // }
+//import
+seneca.use('./inventory.js');
 
-seneca.add({role:'inventory', cmd:'create_item'}, function (args, done) {
-    console.log("=create_item=" + args.name);
-    var item = {};
-    item.name = args.name;
-    // ... perform item creation
-    done(null, item);
-  });
+function item_m(err, resp)
+{
+    console.log("=>item");
+	console.log(resp);
+}
+//start calling actions
+seneca.act({role:'math', cmd:'add', left:1, right:23}, function(err, returned_result)
+{
+   console.log("===> action math+add");
+   
+   if(err) return console.error(err);
+   console.log(returned_result);
+   console.log("<===end action math+add");
+   var fruits = {};
+   fruits.name = 'apple & co';
 
+   seneca.act({role:'inventory', cmd:'find_item', id_param:fruits}, item_m );
 
-//seneca.use('./inventory.js');
-console.log("==call role inventory and create_item==");
-
-seneca.act({role:'inventory', cmd:'create_item', name:'apple'}, function(err, item) {
-	if(err) return err;
-
-  console.log("=Print ITEM="); console.log(item);
 });
 //...
