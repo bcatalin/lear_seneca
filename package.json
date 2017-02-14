@@ -1,0 +1,24 @@
+{
+  "name": "learn_seneca",
+  "version": "1.0.0",
+  "description": "learn Seneca tool for spliting an app into actions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github/bcatalin/learn_seneca.git"
+  },
+  "keywords": [
+    "senecaJs",
+    "nodeJs",
+    "expressJS",
+    "microservice"
+  ],
+  "author": "Catalin Batrinu",
+  "license": "ISC",
+  "dependencies": {
+    "seneca": "^3.3.0"
+  }
+}
